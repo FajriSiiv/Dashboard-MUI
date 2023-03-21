@@ -25,6 +25,8 @@ function App() {
       <Box bgcolor={"background.default"} color={"text.primary"}>
         {/* <Navbar /> */}
         <h1>Hello World</h1>
+        <h1>Hello World Main</h1>
+
       </Box>
     </ThemeProvider>
   );
