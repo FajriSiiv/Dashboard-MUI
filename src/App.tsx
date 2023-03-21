@@ -24,7 +24,7 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <Box bgcolor={"background.default"} color={"text.primary"}>
         {/* <Navbar /> */}
-        <h1>ssss</h1>
+        <h1>Hello World</h1>
       </Box>
     </ThemeProvider>
   );
