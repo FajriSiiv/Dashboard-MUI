@@ -7,7 +7,8 @@ import {
   PaletteOptions,
   PaletteMode,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useStore from "./store";
 
 function App() {
   const [modes, setModes] = useState<PaletteMode>("dark");
@@ -24,9 +25,6 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <Box bgcolor={"background.default"} color={"text.primary"}>
         {/* <Navbar /> */}
-        <h1>Hello World</h1>
-        <h1>Hello World Main</h1>
-
       </Box>
     </ThemeProvider>
   );
