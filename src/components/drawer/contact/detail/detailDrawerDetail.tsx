@@ -54,7 +54,7 @@ const DetailDrawerContact = (props?: any) => {
         universal={true}
       >
         {filterData && (
-          <Stack direction="column" gap={4}>
+          <Stack direction="column" gap={4} mr={3}>
             <Stack
               direction="row"
               justifyContent="space-between"

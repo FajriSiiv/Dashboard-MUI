@@ -3,22 +3,28 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { theme } from "./theme";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
+import Sidebar from "./layout/sidebar";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Contact from "./pages/contact";
+import Dashboard from "./pages/dashboard";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <Sidebar>
+        <Dashboard />
+      </Sidebar>
+    ),
   },
   {
     path: "/contact",
-    element: <Contact />,
-  },
-  {
-    path: "/dashboard",
-    element: <Contact />,
+    element: (
+      <Sidebar>
+        <Contact />
+      </Sidebar>
+    ),
   },
 ]);
 

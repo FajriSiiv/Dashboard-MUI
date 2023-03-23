@@ -1,6 +1,15 @@
-import { Box, Button, Drawer, IconButton, Stack } from "@mui/material";
+import { Add, AddOutlined } from "@mui/icons-material";
+import {
+  Box,
+  Button,
+  Drawer,
+  IconButton,
+  Stack,
+  Typography,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { API_GetContact } from "../../api/contact";
+import AddDrawerContact from "../../components/drawer/contact/add";
 import DetailDrawerContact from "../../components/drawer/contact/detail/detailDrawerDetail";
 import EditDrawerContact from "../../components/drawer/contact/edit/editDrawerContact";
 import SearchBar from "../../components/search/searchBar";
@@ -16,6 +25,7 @@ const Contact = () => {
   const [rawData, setRawData] = useState([]);
   const [emptyData, setEmptyData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [drawerAdd, setAddDrawer] = useState(false);
 
   const columns = [
     {
@@ -88,10 +98,20 @@ const Contact = () => {
     getData();
   }, []);
 
-  if (isLoading) return <p>Loading..</p>;
-
   return (
-    <Box p={3}>
+    <Box>
+      <Stack direction="row" pb={2} justifyContent="space-between">
+        <Typography variant="h5" fontWeight="bold">
+          Halaman Kontak
+        </Typography>
+        <Button
+          variant="outlined"
+          startIcon={<AddOutlined />}
+          onClick={() => setAddDrawer(true)}
+        >
+          Tambah Data
+        </Button>
+      </Stack>
       <Stack direction="row" pb={2} gap={2} sx={{ width: "100%" }}>
         <SearchBar
           onChange={handleSearchBar}
@@ -141,6 +161,29 @@ const Contact = () => {
               }}
             />
           )}
+        </Drawer>
+      </>
+      <>
+        <Drawer
+          anchor="right"
+          open={drawerAdd}
+          onClose={() => {
+            setDrawerDetail(false);
+            setDrawerEdit(false);
+            setAddDrawer(false);
+          }}
+        >
+          <AddDrawerContact
+            handleDetailOut={() => {
+              setAddDrawer(false);
+              getData();
+            }}
+            closeView={() => {
+              setDrawerEdit(false);
+              setDrawerDetail(false);
+              setAddDrawer(false);
+            }}
+          />
         </Drawer>
       </>
     </Box>

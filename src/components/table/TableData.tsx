@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
-import { Box, Button, Checkbox, Stack } from "@mui/material";
+import { Box, Button, Checkbox, Paper, Stack } from "@mui/material";
 import SearchBar from "../search/searchBar";
 
 const TableData = (props?: any) => {
@@ -9,7 +9,7 @@ const TableData = (props?: any) => {
       style: {
         color: "",
         backgroundColor: "red",
-        border: "1px solid black",
+        // border: "1px solid black",
       },
     },
     rows: {
@@ -24,7 +24,7 @@ const TableData = (props?: any) => {
   };
 
   return (
-    <Box>
+    <Paper>
       <DataTable
         data={props.data}
         columns={props.columns}
@@ -35,7 +35,7 @@ const TableData = (props?: any) => {
         onRowClicked={props.handleRowClick}
         progressPending={props.isLoading}
       />
-    </Box>
+    </Paper>
   );
 };
 

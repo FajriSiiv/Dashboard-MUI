@@ -10,6 +10,7 @@ import {
   DeleteOutlined,
   EditOutlined,
   SaveOutlined,
+  CloseOutlined,
 } from "@mui/icons-material";
 import {
   Typography,
@@ -23,8 +24,7 @@ import React, { useEffect, useState } from "react";
 import Scrollbars from "react-custom-scrollbars-2";
 import useStore from "../../../../store";
 
-const EditDrawerContact = (props?: any) => {
-  const [data, setData] = useState<any>(props.data);
+const AddDrawerContact = (props?: any) => {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [city, setCity] = useState("");
@@ -34,11 +34,11 @@ const EditDrawerContact = (props?: any) => {
   const [numberHP, setNumberHP] = useState("");
   const [email, setEmail] = useState("");
 
-  const filterData: any = data.filter((e: any) => e.id === props.idContact)[0];
-  const { contact, editDataContact } = useStore();
+  const { contact, addDataContact } = useStore();
 
-  const handleSave = async () => {
-    await editDataContact(props.idContact, {
+  const handleSave = async (event: React.FormEvent) => {
+    event.preventDefault();
+    await addDataContact({
       name,
       username,
       address: {
@@ -55,49 +55,35 @@ const EditDrawerContact = (props?: any) => {
     props.handleDetailOut();
   };
 
-  const addressAll = `${filterData.address.street} ${filterData.address.suite} ${filterData.address.city}`;
-
-  useEffect(() => {
-    setName(filterData.name);
-    setUsername(filterData.username);
-    setCity(filterData.address.city);
-    setCompany(filterData.company.name);
-    setWork(filterData.company.catchPhrase);
-    setAddress(addressAll);
-    setNumberHP(filterData.phone);
-    setEmail(filterData.email);
-  }, []);
-
   return (
     <Box p={3} width="50vw" maxWidth={500}>
-      <Scrollbars
-        autoHide
-        autoHideTimeout={1000}
-        autoHideDuration={200}
-        autoHeight
-        autoHeightMin={0}
-        autoHeightMax={600}
-        thumbMinSize={30}
-        universal={true}
-      >
-        {filterData && (
-          <Stack direction="column" gap={4} width="100%" mr={3}>
+      <form onSubmit={handleSave}>
+        <Scrollbars
+          autoHide
+          autoHideTimeout={1000}
+          autoHideDuration={200}
+          autoHeight
+          autoHeightMin={0}
+          autoHeightMax={600}
+          thumbMinSize={30}
+          universal={true}
+        >
+          <Stack direction="column" gap={4} width="90%" alignItems="center">
             <Stack
               direction="row"
               justifyContent="space-between"
               gap={3}
               alignItems="center"
-              sx={{ height: "100px" }}
+              sx={{ height: "100px", width: "100%" }}
             >
               <TextField
-                value={name}
                 variant="outlined"
                 onChange={(e) => setName(e.target.value)}
                 fullWidth
                 label="Nama"
               />
-              <IconButton onClick={props.detailView}>
-                <EditOutlined fontSize="small" />
+              <IconButton onClick={props.closeView}>
+                <CloseOutlined fontSize="small" />
               </IconButton>
             </Stack>
 
@@ -110,7 +96,6 @@ const EditDrawerContact = (props?: any) => {
               <BadgeOutlined fontSize="large" />
               <Stack direction="column" sx={{ width: "100%" }}>
                 <TextField
-                  value={username}
                   variant="outlined"
                   onChange={(e) => setUsername(e.target.value)}
                   fullWidth
@@ -127,7 +112,6 @@ const EditDrawerContact = (props?: any) => {
               <ApartmentOutlined fontSize="large" />
               <Stack direction="column" sx={{ width: "100%" }}>
                 <TextField
-                  value={city}
                   variant="outlined"
                   onChange={(e) => setCity(e.target.value)}
                   fullWidth
@@ -145,7 +129,6 @@ const EditDrawerContact = (props?: any) => {
               <HomeRepairServiceOutlined fontSize="large" />
               <Stack direction="column" sx={{ width: "100%" }}>
                 <TextField
-                  value={company}
                   variant="outlined"
                   onChange={(e) => setCompany(e.target.value)}
                   fullWidth
@@ -162,7 +145,6 @@ const EditDrawerContact = (props?: any) => {
               <WorkOutlineOutlined fontSize="large" />
               <Stack direction="column" sx={{ width: "100%" }}>
                 <TextField
-                  value={work}
                   variant="outlined"
                   onChange={(e) => setWork(e.target.value)}
                   fullWidth
@@ -180,7 +162,6 @@ const EditDrawerContact = (props?: any) => {
               <HomeOutlined fontSize="large" />
               <Stack direction="column" sx={{ width: "100%" }}>
                 <TextField
-                  value={address}
                   variant="outlined"
                   onChange={(e) => setAddress(e.target.value)}
                   fullWidth
@@ -197,7 +178,6 @@ const EditDrawerContact = (props?: any) => {
               <PhoneAndroidOutlined fontSize="large" />
               <Stack direction="column" sx={{ width: "100%" }}>
                 <TextField
-                  value={numberHP}
                   variant="outlined"
                   onChange={(e) => setNumberHP(e.target.value)}
                   fullWidth
@@ -214,7 +194,6 @@ const EditDrawerContact = (props?: any) => {
               <AlternateEmailOutlined fontSize="large" />
               <Stack direction="column" sx={{ width: "100%" }}>
                 <TextField
-                  value={email}
                   variant="outlined"
                   onChange={(e) => setEmail(e.target.value)}
                   fullWidth
@@ -223,19 +202,19 @@ const EditDrawerContact = (props?: any) => {
               </Stack>
             </Stack>
           </Stack>
-        )}
-      </Scrollbars>
-      <Button
-        sx={{ marginTop: "50px", float: "right" }}
-        variant="outlined"
-        color="primary"
-        startIcon={<SaveOutlined fontSize="large" />}
-        onClick={handleSave}
-      >
-        Save
-      </Button>
+        </Scrollbars>
+        <Button
+          sx={{ marginTop: "50px", float: "right" }}
+          variant="outlined"
+          color="primary"
+          startIcon={<SaveOutlined fontSize="large" />}
+          type="submit"
+        >
+          Save
+        </Button>
+      </form>
     </Box>
   );
 };
 
-export default EditDrawerContact;
+export default AddDrawerContact;

@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import {
+  API_AddContact,
   API_DeleteContact,
   API_EditContact,
   API_GetContact,
@@ -22,6 +23,9 @@ const useStore = create((set: any) => ({
   },
   editDataContact: async (id: any, body: any) => {
     await API_EditContact(id, body);
+  },
+  addDataContact: async (body: any) => {
+    await API_AddContact(body);
   },
 }));
 

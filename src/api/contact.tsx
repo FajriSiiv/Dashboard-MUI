@@ -22,6 +22,26 @@ export const API_GetContactByID = async (id: any) => {
   }
 };
 
+export const API_AddContact = async (body: any) => {
+  try {
+    const res = await fetch(
+      "https://jsonplaceholder.typicode.com/users",
+
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      }
+    ).then((data) => data.json());
+
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const API_EditContact = async (id: any, body: any) => {
   try {
     const res = await fetch(
