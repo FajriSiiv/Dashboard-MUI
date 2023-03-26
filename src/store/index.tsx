@@ -6,6 +6,7 @@ import {
   API_GetContact,
   API_GetContactByID,
 } from "../api/contact";
+import { API_GetProduct } from "../api/product";
 
 const useStore = create((set: any) => ({
   contact: [],
@@ -26,6 +27,11 @@ const useStore = create((set: any) => ({
   },
   addDataContact: async (body: any) => {
     await API_AddContact(body);
+  },
+  product: [],
+  getDataProduct: async () => {
+    const product = await API_GetProduct();
+    set({ product });
   },
 }));
 

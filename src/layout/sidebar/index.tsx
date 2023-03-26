@@ -1,16 +1,22 @@
-import { GroupWork } from "@mui/icons-material";
+import { GroupWork, MoreVertOutlined } from "@mui/icons-material";
 import {
+  AppBar,
   Box,
   Button,
   Grid,
+  IconButton,
   ListItem,
   ListItemText,
+  Menu,
+  MenuItem,
   Stack,
   styled,
+  Toolbar,
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import AppBarSidebar from "../appbar";
 
 const ButtonNav = styled(Box)(() => ({
   textAlign: "left",
@@ -26,17 +32,26 @@ const ButtonNav = styled(Box)(() => ({
 const Sidebar = ({ children }: { children: React.ReactNode }) => {
   const [contact, setContact] = useState(false);
   const [dashboard, setDashboard] = useState(false);
+  const [products, setProducts] = useState(false);
   const navigate = useNavigate();
   const params = useLocation();
 
   function isChooseContactPage() {
     setContact(true);
+    setProducts(false);
     setDashboard(false);
   }
 
   function isChooseDashboardPage() {
     setContact(false);
+    setProducts(false);
     setDashboard(true);
+  }
+
+  function isChooseProductPage() {
+    setContact(false);
+    setProducts(true);
+    setDashboard(false);
   }
 
   const ButtonListNav = (props?: any) => {
@@ -60,6 +75,9 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
         break;
       case "/contact":
         setContact(true);
+        break;
+      case "/products":
+        setProducts(true);
         break;
     }
   }, [params.pathname]);
@@ -94,9 +112,20 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
               isActive={contact}
               text="Contact"
             />
+            <ButtonListNav
+              onClick={() => {
+                isChooseProductPage();
+                navigate("/products");
+              }}
+              isActive={products}
+              text="Products"
+            />
           </Stack>
         </Grid>
         <Grid item lg={10}>
+          {/* <Box width="100%">
+            <AppBarSidebar />
+          </Box> */}
           <Box sx={{ padding: "20px" }}>{children}</Box>
         </Grid>
       </Grid>

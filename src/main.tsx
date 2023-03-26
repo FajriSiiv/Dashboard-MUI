@@ -8,6 +8,7 @@ import Sidebar from "./layout/sidebar";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Contact from "./pages/contact";
 import Dashboard from "./pages/dashboard";
+import Products from "./pages/products";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,14 @@ const router = createBrowserRouter([
     element: (
       <Sidebar>
         <Contact />
+      </Sidebar>
+    ),
+  },
+  {
+    path: "/products",
+    element: (
+      <Sidebar>
+        <Products />
       </Sidebar>
     ),
   },
