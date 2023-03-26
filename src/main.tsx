@@ -2,13 +2,45 @@ import { ThemeProvider } from "@emotion/react";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import "./index.css";
 import { theme } from "./theme";
+import "./index.css";
+import Sidebar from "./layout/sidebar";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Contact from "./pages/contact";
+import Dashboard from "./pages/dashboard";
+import Products from "./pages/products";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: (
+      <Sidebar>
+        <Dashboard />
+      </Sidebar>
+    ),
+  },
+  {
+    path: "/contact",
+    element: (
+      <Sidebar>
+        <Contact />
+      </Sidebar>
+    ),
+  },
+  {
+    path: "/products",
+    element: (
+      <Sidebar>
+        <Products />
+      </Sidebar>
+    ),
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <App />
+      <RouterProvider router={router} />
     </ThemeProvider>
   </React.StrictMode>
 );

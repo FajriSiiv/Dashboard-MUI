@@ -7,10 +7,16 @@ import {
   PaletteOptions,
   PaletteMode,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useStore from "./store";
+
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
+import Contact from "./pages/contact";
+import Login from "./pages/login";
 
 function App() {
-  const [modes, setModes] = useState<PaletteMode>("dark");
+  const [modes, setModes] = useState<PaletteMode>("light");
 
   const paletteOptions: PaletteOptions = {
     mode: modes,
@@ -22,12 +28,7 @@ function App() {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <Box bgcolor={"background.default"} color={"text.primary"}>
-        {/* <Navbar /> */}
-        <h1>Hello World</h1>
-        <h1>Hello World Main</h1>
-
-      </Box>
+      <Box bgcolor={"background.default"} color={"text.primary"}></Box>
     </ThemeProvider>
   );
 }
