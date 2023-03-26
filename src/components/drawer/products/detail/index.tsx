@@ -17,7 +17,7 @@ const DetailDrawerProducts = (props?: any) => {
   return (
     <Box p={5} width="500px">
       <Stack direction="column" gap={3}>
-        <Typography variant="h2" fontSize={25} fontWeight="600">
+        <Typography variant="h2" fontSize={25} fontWeight="700">
           {filterData.title}
         </Typography>
         <Box sx={{ height: "300px", width: "100%", position: "relative" }}>
