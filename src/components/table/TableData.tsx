@@ -31,7 +31,7 @@ const TableData = (props?: any) => {
         customStyles={customStyles}
         selectableRows
         pagination
-        selectableRowsComponent={<Checkbox />}
+        // selectableRowsComponent={Checkbox}
         onRowClicked={props.handleRowClick}
         progressPending={props.isLoading}
       />
